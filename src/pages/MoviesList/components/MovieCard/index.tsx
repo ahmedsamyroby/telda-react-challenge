@@ -38,12 +38,12 @@ export default function MovieCard({
 export function MovieCardSkeleton() {
   return (
     <article className="bg-secondary shadow rounded-md overflow-hidden animate-pulse">
-      <div className="aspect-[27/40] bg-gray-300">
-        <div className="w-full h-full object-cover bg-gray-300" />
+      <div className="aspect-[27/40] bg-white/10">
+        <div className="w-full h-full object-cover bg-white/10" />
       </div>
       <div className="py-2 px-4">
-        <div className="h-4 w-20 bg-gray-300 rounded-sm mb-3" />
-        <div className="h-6 w-36 bg-gray-300 rounded-sm" />
+        <div className="h-4 w-20 bg-white/10 rounded-sm mb-3" />
+        <div className="h-6 w-36 bg-white/10 rounded-sm" />
       </div>
     </article>
   );
