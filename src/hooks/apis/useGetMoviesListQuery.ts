@@ -8,11 +8,15 @@ type MovieListResponse = Promise<
   AxiosResponse<TheMovieDBResponse<MovieSummary>>
 >;
 
-export default function useGetMoviesListQuery() {
+export default function useGetMoviesListQuery(page: number) {
   return useQuery({
-    queryKey: ["movies-list"],
+    queryKey: ["movies-list", page],
     queryFn: (): MovieListResponse => {
-      return axiosInstance.get("/discover/movie");
+      return axiosInstance.get("/discover/movie", {
+        params: {
+          page,
+        },
+      });
     },
     select: (data) => data.data,
     staleTime: 60 * 1000, // make the movies list stale for 60 seconds
