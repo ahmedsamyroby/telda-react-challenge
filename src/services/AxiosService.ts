@@ -1,8 +1,5 @@
 import axios from "axios";
-
-export const API_KEY = process.env.REACT_APP_API_KEY;
-export const AUTH_TOKEN = process.env.REACT_APP_AUTH_TOKEN;
-export const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import { AUTH_TOKEN, BASE_URL } from "../constants";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
