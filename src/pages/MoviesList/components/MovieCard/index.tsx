@@ -1,5 +1,3 @@
-import { Info } from "lucide-react";
-
 type MovieCardProps = {
   id: number;
   image: string;
@@ -14,25 +12,24 @@ export default function MovieCard({
   releaseDate,
 }: MovieCardProps) {
   return (
-    <article className="bg-secondary shadow rounded-md overflow-hidden">
-      <div className="aspect-[27/40]">
-        <img src={image} alt="title" className="w-full h-full object-cover" />
+    <article className="bg-secondary shadow rounded-md ring-2 ring-transparent overflow-hidden group hover:ring-accent">
+      <div className="aspect-[27/40] overflow-hidden">
+        <img
+          src={image}
+          alt="title"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+        />
       </div>
-      <div className="py-2 px-4 flex justify-between items-center">
-        <div>
-          <span className="font-semibold text-xs sm:text-sm text-secondary-typography">
-            {releaseDate}
-          </span>
-          <h3
-            className="text-md lg:text-lg text-primary-typography max-w-48 truncate"
-            title={title}
-          >
-            {title}
-          </h3>
-        </div>
-        <button className="bg-accent border-2 border-accent p-1 rounded-md text-sm text-primary-typography hover:bg-transparent hover:border-accent hover:text-accent transition-colors">
-          <Info />
-        </button>
+      <div className="py-2 px-4">
+        <span className="font-semibold text-md md:text-sm lg:text-md text-secondary-typography">
+          {releaseDate}
+        </span>
+        <h3
+          className="text-lg md:text-md lg:text-lg text-primary-typography truncate"
+          title={title}
+        >
+          {title}
+        </h3>
       </div>
     </article>
   );
@@ -44,12 +41,9 @@ export function MovieCardSkeleton() {
       <div className="aspect-[27/40] bg-gray-300">
         <div className="w-full h-full object-cover bg-gray-300" />
       </div>
-      <div className="py-2 px-4 flex justify-between items-center">
-        <div>
-          <div className="h-4 w-16 bg-gray-300 rounded-sm mb-3" />
-          <div className="h-6 w-36 bg-gray-300 rounded-sm" />
-        </div>
-        <div className="w-9 h-9 bg-gray-300 rounded-md" />
+      <div className="py-2 px-4">
+        <div className="h-4 w-20 bg-gray-300 rounded-sm mb-3" />
+        <div className="h-6 w-36 bg-gray-300 rounded-sm" />
       </div>
     </article>
   );
