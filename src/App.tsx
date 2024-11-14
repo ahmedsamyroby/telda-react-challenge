@@ -1,8 +1,19 @@
+import { Outlet } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <div className="p-4 rounded bg-red-900 text-white text-center">
-      Testing tailwindCSS
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="bg-primary w-full p-8">
+        <div className="max-w-[100rem] w-full mx-auto">
+          <Outlet />
+        </div>
+      </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
