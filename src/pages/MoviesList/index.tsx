@@ -11,7 +11,7 @@ const MAX_PAGES = 500; // TheMovieDB API only allows up to 500 pages
 
 export default function MoviesList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get("page"));
+  const currentPage = Number(searchParams.get("page")) || 1;
   const [totalPages, setTotalPages] = useState(1);
 
   const {
@@ -21,9 +21,8 @@ export default function MoviesList() {
     error,
   } = useGetMoviesListQuery(currentPage);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number) =>
     setSearchParams({ page: page.toString() });
-  };
 
   useEffect(() => {
     if (!searchParams.get("page")) setSearchParams({ page: "1" });
@@ -50,7 +49,7 @@ export default function MoviesList() {
           ? Array.from({ length: PAGE_SIZE }).map((_, idx) => (
               <MovieCardSkeleton key={idx} />
             ))
-          : moviesList?.results.map((movie) => (
+          : (moviesList?.results ?? []).map((movie) => (
               <MovieCard
                 key={movie.id}
                 id={movie.id}
@@ -64,7 +63,7 @@ export default function MoviesList() {
         <Pagination
           currentPage={currentPage}
           totalPages={Math.min(totalPages, MAX_PAGES)}
-          onChange={handlePageChange}
+          onPageChange={handlePageChange}
         />
       </div>
     </div>
