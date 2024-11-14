@@ -2,20 +2,16 @@ import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PaginationProps = {
-  pageSize: number;
   currentPage: number;
-  totalItems: number;
+  totalPages: number;
   onChange: (page: number) => void;
 };
 
 export default function Pagination({
-  pageSize,
   currentPage,
-  totalItems,
   onChange,
+  totalPages,
 }: PaginationProps) {
-  const totalPages = 500;
-
   const getPages = (totalPages: number) => {
     const pages = Array.from({ length: totalPages }).map((_, idx) => idx + 1);
 

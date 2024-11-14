@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
 import { IMAGE_BASE_URL } from "../../constants";
 import useGetMoviesListQuery from "../../hooks/apis/useGetMoviesListQuery";
@@ -7,10 +7,12 @@ import { CircleAlert } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 const PAGE_SIZE = 20;
+const MAX_PAGES = 500; // TheMovieDB API only allows up to 500 pages
 
 export default function MoviesList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page"));
+  const [totalPages, setTotalPages] = useState(1);
 
   const {
     data: moviesList,
@@ -26,6 +28,12 @@ export default function MoviesList() {
   useEffect(() => {
     if (!searchParams.get("page")) setSearchParams({ page: "1" });
   }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
+    if (moviesList) {
+      setTotalPages(moviesList.total_pages);
+    }
+  }, [moviesList]);
 
   if (isError)
     return (
@@ -54,9 +62,8 @@ export default function MoviesList() {
       </div>
       <div className="flex items-center justify-center">
         <Pagination
-          pageSize={PAGE_SIZE}
           currentPage={currentPage}
-          totalItems={moviesList?.total_results ?? 0}
+          totalPages={Math.min(totalPages, MAX_PAGES)}
           onChange={handlePageChange}
         />
       </div>
