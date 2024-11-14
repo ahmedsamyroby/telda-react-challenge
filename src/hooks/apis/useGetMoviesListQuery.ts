@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axiosInstance from "../../services/AxiosService";
 import { AxiosResponse } from "axios";
 import TheMovieDBResponse from "../../types/TheMovieDBResponse";
@@ -20,5 +20,6 @@ export default function useGetMoviesListQuery(page: number) {
     },
     select: (data) => data.data,
     staleTime: 60 * 1000, // make the movies list stale for 60 seconds
+    placeholderData: (previousData) => keepPreviousData(previousData),
   });
 }

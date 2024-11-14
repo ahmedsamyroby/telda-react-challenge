@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Pagination from "../../components/Pagination";
 import { IMAGE_BASE_URL } from "../../constants";
 import useGetMoviesListQuery from "../../hooks/apis/useGetMoviesListQuery";
@@ -12,7 +12,6 @@ const MAX_PAGES = 500; // TheMovieDB API only allows up to 500 pages
 export default function MoviesList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
-  const [totalPages, setTotalPages] = useState(1);
 
   const {
     data: moviesList,
@@ -27,12 +26,6 @@ export default function MoviesList() {
   useEffect(() => {
     if (!searchParams.get("page")) setSearchParams({ page: "1" });
   }, [searchParams, setSearchParams]);
-
-  useEffect(() => {
-    if (moviesList) {
-      setTotalPages(moviesList.total_pages);
-    }
-  }, [moviesList]);
 
   if (isError)
     return (
@@ -62,7 +55,7 @@ export default function MoviesList() {
       <div className="flex items-center justify-center">
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.min(totalPages, MAX_PAGES)}
+          totalPages={Math.min(moviesList?.total_pages || 0, MAX_PAGES)}
           onPageChange={handlePageChange}
         />
       </div>
