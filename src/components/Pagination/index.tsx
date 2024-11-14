@@ -37,7 +37,7 @@ export default function Pagination({
   };
 
   return (
-    <ul className="flex gap-3">
+    <ul className="flex flex-wrap gap-3 justify-center items-end">
       <li>
         <PaginationControl
           disabled={currentPage === 1}
@@ -75,7 +75,7 @@ export default function Pagination({
 
 function PaginationEllipsis() {
   return (
-    <div className="px-2 border-2 border-transparent font-bold text-accent flex items-end">
+    <div className="md:px-2 border-2 border-transparent font-bold text-accent flex items-end">
       <span>. . .</span>
     </div>
   );
@@ -94,7 +94,7 @@ function PaginationControl({
   return (
     <button
       className={clsx(
-        "p-2 bg-transparent border-2 border-accent text-accent hover:bg-accent/5 rounded-md disabled:grayscale disabled:hover:bg-transparent disabled:cursor-not-allowed",
+        "p-1 md:p-2 bg-transparent border-2 border-accent text-accent hover:bg-accent/5 rounded-md disabled:grayscale disabled:hover:bg-transparent disabled:cursor-not-allowed",
         className
       )}
       {...props}
@@ -117,7 +117,7 @@ function PaginationItem({
   return (
     <button
       className={clsx(
-        "px-4 py-2 border-2 rounded-md",
+        "px-3 py-1 md:px-4 md:py-2 border-2 rounded-md",
         {
           "bg-accent border-accent text-white hover:bg-accent/90": active,
           "bg-transparent border-accent text-accent hover:bg-accent/5": !active,
