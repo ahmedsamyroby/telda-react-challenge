@@ -14,10 +14,30 @@ export default function Pagination({
   totalItems,
   onChange,
 }: PaginationProps) {
-  const totalPages = 9;
+  const totalPages = 500;
 
   const getPages = (totalPages: number) => {
-    return Array.from({ length: totalPages });
+    const pages = Array.from({ length: totalPages }).map((_, idx) => idx + 1);
+
+    if (totalPages <= 5) {
+      return pages;
+    }
+
+    if (currentPage <= 3) {
+      return [...pages.slice(0, 4), "ellipsis", totalPages];
+    }
+
+    if (currentPage >= totalPages - 2) {
+      return [1, "ellipsis", ...pages.slice(totalPages - 4)];
+    }
+
+    return [
+      1,
+      "ellipsis",
+      ...pages.slice(currentPage - 2, currentPage + 1),
+      "ellipsis",
+      totalPages,
+    ];
   };
 
   return (
@@ -30,21 +50,21 @@ export default function Pagination({
           <ChevronLeft />
         </PaginationControl>
       </li>
-      {getPages(totalPages).map((_, idx) => (
-        <li key={idx}>
-          {idx === 4 ? (
-            <PaginationEllipsis />
-          ) : (
+      {getPages(totalPages).map((page, idx) => {
+        if (page === "ellipsis") {
+          return <PaginationEllipsis key={idx} />;
+        }
+        return (
+          <li key={idx}>
             <PaginationItem
-              disabled={currentPage === idx + 1}
-              onClick={() => onChange(idx + 1)}
-              active={currentPage === idx + 1}
+              active={currentPage === page}
+              onClick={() => typeof page === "number" && onChange(page)}
             >
-              {idx + 1}
+              {page}
             </PaginationItem>
-          )}
-        </li>
-      ))}
+          </li>
+        );
+      })}
       <li>
         <PaginationControl
           disabled={currentPage === totalPages}
@@ -59,7 +79,7 @@ export default function Pagination({
 
 function PaginationEllipsis() {
   return (
-    <div className="px-2 h-full border-2 border-transparent font-bold text-accent flex items-end">
+    <div className="px-2 border-2 border-transparent font-bold text-accent flex items-end">
       <span>. . .</span>
     </div>
   );
