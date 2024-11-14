@@ -1,11 +1,11 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axiosInstance from "../../services/AxiosService";
 import { AxiosResponse } from "axios";
-import TheMovieDBResponse from "../../types/TheMovieDBResponse";
+import TheMovieDBPaginatedResponse from "../../types/TheMovieDBPaginatedResponse";
 import MovieSummary from "../../types/MovieSummary";
 
 type MovieListResponse = Promise<
-  AxiosResponse<TheMovieDBResponse<MovieSummary>>
+  AxiosResponse<TheMovieDBPaginatedResponse<MovieSummary>>
 >;
 
 export default function useGetMoviesListQuery(page: number) {

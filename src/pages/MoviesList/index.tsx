@@ -29,7 +29,7 @@ export default function MoviesList() {
 
   if (isError)
     return (
-      <div className="text-red-600 font-bold text-2xl flex flex-col justify-center items-center gap-2 h-screen">
+      <div className="text-red-600 font-bold text-2xl flex flex-col justify-center items-center gap-2">
         <CircleAlert size={48} />
         {error ? error.message : "Something Went Wrong"}
       </div>
