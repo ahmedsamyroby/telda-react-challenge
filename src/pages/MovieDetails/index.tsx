@@ -40,7 +40,7 @@ export default function MovieDetails() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
       </div>
-      
+
       <div className="relative z-20 px-24 flex items-end gap-4 pt-32 pb-4">
         <div className="aspect-[27/40] overflow-hidden h-max w-80 min-w-80 rounded-md shadow-lg">
           <img
@@ -68,10 +68,10 @@ export default function MovieDetails() {
           <section>
             <h2 className="text-3xl font-semibold text-accent mb-4">Casts</h2>
             <div className="flex gap-4 mt-4 overflow-x-auto">
-              {movieDetails?.credits.cast.map((cast: any) => (
+              {movieDetails?.credits.cast.map((cast) => (
                 <CastCard
                   key={cast.cast_id}
-                  image={POSTER_BASE_URL + cast.profile_path}
+                  image={cast.profile_path}
                   name={cast.name}
                   character={cast.character}
                 />

@@ -30,7 +30,7 @@ type CastInfo = {
   order: number;
   original_name: string;
   popularity: 8.265;
-  profile_path: string;
+  profile_path: string | null;
 };
 
 type MovieDetails = {
