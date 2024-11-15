@@ -58,7 +58,7 @@ export default function MovieDetails() {
               Overview
             </h2>
             <p className="text-base sm:text-lg text-secondary-typography">
-              {movieDetails?.overview}
+              {movieDetails?.overview || "Overview not available."}
             </p>
           </section>
 
@@ -66,16 +66,22 @@ export default function MovieDetails() {
             <h2 className="text-2xl sm:text-3xl font-semibold text-accent mb-4">
               Casts
             </h2>
-            <div className="flex gap-4 mt-4 overflow-x-auto snap-x md:snap-none">
-              {movieDetails?.credits.cast.map((cast) => (
-                <CastCard
-                  key={cast.cast_id}
-                  image={cast.profile_path}
-                  name={cast.name}
-                  character={cast.character}
-                />
-              ))}
-            </div>
+            {!!movieDetails?.credits.cast.length ? (
+              <div className="flex gap-4 mt-4 overflow-x-auto snap-x md:snap-none">
+                {movieDetails?.credits.cast.map((cast) => (
+                  <CastCard
+                    key={cast.cast_id}
+                    image={cast.profile_path}
+                    name={cast.name}
+                    character={cast.character}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p className="text-base sm:text-lg text-secondary-typography">
+                Cast information not available.
+              </p>
+            )}
           </section>
         </div>
 
@@ -90,7 +96,7 @@ export default function MovieDetails() {
                   key={genre.id}
                   color={GENRE_DEFINITION_MAP[genre.id]?.color ?? undefined} // handle unknown genre
                 >
-                  {genre.name}
+                  {genre.name || "Unknown Genre"}
                 </Tag>
               ))}
             </div>
