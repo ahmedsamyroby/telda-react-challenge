@@ -11,7 +11,13 @@ export default function Avatar({ image, fallback, ...props }: AvatarProps) {
   return (
     <div {...props}>
       {!isError ? (
-        <AvatarImage onError={() => setIsError(true)} {...image} />
+        <AvatarImage
+          onError={(e) => {
+            setIsError(true);
+            image.onError?.(e);
+          }}
+          {...image}
+        />
       ) : (
         <AvatarFallback {...fallback} />
       )}
