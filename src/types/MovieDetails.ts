@@ -18,6 +18,21 @@ type SpokenLanguage = {
   name: string;
 };
 
+type CastInfo = {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: 8.265;
+  profile_path: string;
+};
+
 type MovieDetails = {
   adult: boolean;
   backdrop_path: string | null;
@@ -45,6 +60,10 @@ type MovieDetails = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: {
+    cast: CastInfo[];
+    crew: any[];
+  };
 };
 
 export default MovieDetails;

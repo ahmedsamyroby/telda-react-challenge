@@ -7,6 +7,7 @@ import {
 } from "../../constants";
 import Tag from "../../components/Tag";
 import { useEffect } from "react";
+import CastCard from "./components/CastCard";
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
@@ -40,11 +41,11 @@ export default function MovieDetails() {
         <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
       </div>
       <div className="relative z-20 px-24 flex items-end gap-4 pt-32 pb-4">
-        <div className="aspect-[27/40] overflow-hidden h-max max-w-96 rounded-md shadow-lg">
+        <div className="aspect-[27/40] overflow-hidden h-max w-80 min-w-80 rounded-md shadow-lg">
           <img
             alt={movieDetails?.title + " poster"}
             src={POSTER_BASE_URL + (movieDetails?.poster_path ?? "")}
-            className="w-full h-full object-cover"
+            className="w-full h-full min-w-full min-h-full object-cover"
           />
         </div>
         <h1 className="text-7xl font-semibold text-primary-typography">
@@ -52,11 +53,27 @@ export default function MovieDetails() {
         </h1>
       </div>
       <div className="relative bg-secondary w-full z-20 p-4 px-24 grid grid-cols-5 gap-12">
-        <div className="col-span-4">
-          <h2 className="text-3xl font-semibold text-accent">Overview</h2>
-          <p className="mt-4 text-lg text-secondary-typography">
-            {movieDetails?.overview}
-          </p>
+        <div className="col-span-4 flex flex-col gap-16">
+          <div>
+            <h2 className="text-3xl font-semibold text-accent mb-4">
+              Overview
+            </h2>
+            <p className="text-lg text-secondary-typography">
+              {movieDetails?.overview}
+            </p>
+          </div>
+          <div>
+            <h2 className="text-3xl font-semibold text-accent mb-4">Casts</h2>
+            <div className="flex gap-4 mt-4 overflow-x-auto">
+              {movieDetails?.credits.cast.map((cast: any) => (
+                <CastCard
+                  image={POSTER_BASE_URL + cast.profile_path}
+                  name={cast.name}
+                  character={cast.character}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
