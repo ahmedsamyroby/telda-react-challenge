@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  @apply w-0.5;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-accent rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent/80;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary rounded;
+}
+
+::-webkit-scrollbar-button {
+  @apply hidden;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme("colors.accent") transparent; /* Thumb and track colors */
+}
