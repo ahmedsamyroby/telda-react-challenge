@@ -52,7 +52,7 @@ export default function MovieDetails() {
       </div>
 
       <div className="relative bg-secondary w-full z-20 p-4 md:p-7 lg:py-9 lg:px-24 grid grid-cols-1 xl:grid-cols-5 gap-8 md:gap-12">
-        <div className="xl:col-span-4 flex flex-col gap-8 md:gap-16">
+        <div className="xl:col-span-4 flex flex-col gap-8 md:gap-16 order-2 xl:order-1">
           <section>
             <h2 className="text-2xl sm:text-3xl font-semibold text-accent mb-4">
               Overview
@@ -85,7 +85,7 @@ export default function MovieDetails() {
           </section>
         </div>
 
-        <div className="flex flex-col items-center xl:items-start text-center xl:text-start gap-4">
+        <div className="flex flex-col items-center xl:items-start text-center xl:text-start gap-4 order-1 xl:order-2">
           <section>
             <h3 className="text-lg sm:text-xl font-semibold text-accent mb-1">
               Genres
