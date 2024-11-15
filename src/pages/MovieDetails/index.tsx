@@ -29,7 +29,7 @@ export default function MovieDetails() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className=" bg-secondary">
+    <div className="bg-secondary">
       <div className="w-full overflow-hidden fixed top-0 z-0 h-full">
         {movieDetails?.backdrop_path && (
           <img
@@ -40,44 +40,48 @@ export default function MovieDetails() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
       </div>
+      
       <div className="relative z-20 px-24 flex items-end gap-4 pt-32 pb-4">
         <div className="aspect-[27/40] overflow-hidden h-max w-80 min-w-80 rounded-md shadow-lg">
           <img
             alt={movieDetails?.title + " poster"}
             src={POSTER_BASE_URL + (movieDetails?.poster_path ?? "")}
-            className="w-full h-full min-w-full min-h-full object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
         <h1 className="text-7xl font-semibold text-primary-typography">
           {movieDetails?.title}
         </h1>
       </div>
+
       <div className="relative bg-secondary w-full z-20 p-4 px-24 grid grid-cols-5 gap-12">
         <div className="col-span-4 flex flex-col gap-16">
-          <div>
+          <section>
             <h2 className="text-3xl font-semibold text-accent mb-4">
               Overview
             </h2>
             <p className="text-lg text-secondary-typography">
               {movieDetails?.overview}
             </p>
-          </div>
-          <div>
+          </section>
+
+          <section>
             <h2 className="text-3xl font-semibold text-accent mb-4">Casts</h2>
             <div className="flex gap-4 mt-4 overflow-x-auto">
               {movieDetails?.credits.cast.map((cast: any) => (
                 <CastCard
+                  key={cast.cast_id}
                   image={POSTER_BASE_URL + cast.profile_path}
                   name={cast.name}
                   character={cast.character}
                 />
               ))}
             </div>
-          </div>
+          </section>
         </div>
 
         <div className="flex flex-col gap-4">
-          <div>
+          <section>
             <h3 className="text-xl font-semibold text-accent mb-1">Genres</h3>
             <div className="flex gap-2 items-center justify-start flex-wrap">
               {movieDetails?.genres.map((genre) => (
@@ -89,28 +93,28 @@ export default function MovieDetails() {
                 </Tag>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h3 className="text-xl font-semibold text-accent">Release Date</h3>
             <p className="text-lg text-secondary-typography">
               {movieDetails?.release_date}
             </p>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h3 className="text-xl font-semibold text-accent">Duration</h3>
             <p className="text-lg text-secondary-typography">
               {movieDetails?.runtime} minutes
             </p>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h3 className="text-xl font-semibold text-accent">Rating</h3>
             <p className="text-lg text-secondary-typography">
               {movieDetails?.vote_average} / 10
             </p>
-          </div>
+          </section>
         </div>
       </div>
     </div>
