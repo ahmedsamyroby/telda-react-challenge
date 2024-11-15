@@ -10,7 +10,7 @@ type CastCardProps = {
 
 export default function CastCard({ image, name, character }: CastCardProps) {
   return (
-    <div className="flex flex-col items-center w-40 min-w-40 text-center">
+    <div className="flex flex-col items-center w-40 min-w-40 text-center snap-start">
       <Avatar
         className="w-36 h-36 rounded-md mb-4 overflow-hidden"
         image={{
