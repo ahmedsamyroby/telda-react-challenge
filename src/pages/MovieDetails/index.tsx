@@ -101,7 +101,8 @@ export default function MovieDetails() {
               Release Date
             </h3>
             <p className="text-base sm:text-lg text-secondary-typography">
-              {movieDetails?.release_date || "TBD"}
+              {movieDetails?.release_date?.split("-").reverse().join("-") || // display it in DD-MM-YYYY format as it's the superior date format
+                "TBD"}
             </p>
           </section>
 
