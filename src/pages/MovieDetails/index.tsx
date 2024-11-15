@@ -8,6 +8,7 @@ import {
 import Tag from "../../components/Tag";
 import { useEffect } from "react";
 import CastCard from "./components/CastCard";
+import { transformMinutesToHours } from "../../utils";
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
@@ -54,7 +55,7 @@ export default function MovieDetails() {
         </h1>
       </div>
 
-      <div className="relative bg-secondary w-full z-20 p-4 px-24 grid grid-cols-5 gap-12">
+      <div className="relative bg-secondary w-full z-20 py-9 px-24 grid grid-cols-5 gap-12">
         <div className="col-span-4 flex flex-col gap-16">
           <section>
             <h2 className="text-3xl font-semibold text-accent mb-4">
@@ -98,21 +99,21 @@ export default function MovieDetails() {
           <section>
             <h3 className="text-xl font-semibold text-accent">Release Date</h3>
             <p className="text-lg text-secondary-typography">
-              {movieDetails?.release_date}
+              {movieDetails?.release_date || "TBD"}
             </p>
           </section>
 
           <section>
             <h3 className="text-xl font-semibold text-accent">Duration</h3>
             <p className="text-lg text-secondary-typography">
-              {movieDetails?.runtime} minutes
+              {transformMinutesToHours(movieDetails?.runtime)}
             </p>
           </section>
 
           <section>
             <h3 className="text-xl font-semibold text-accent">Rating</h3>
             <p className="text-lg text-secondary-typography">
-              {movieDetails?.vote_average} / 10
+              {movieDetails?.vote_average || 0} / 10
             </p>
           </section>
         </div>
