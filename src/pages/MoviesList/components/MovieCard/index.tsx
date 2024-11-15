@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { transformDateFormat } from "../../../../utils";
 
 type MovieCardProps = {
   id: number;
@@ -25,7 +26,7 @@ export default function MovieCard({
         </div>
         <div className="py-2 px-4">
           <span className="font-semibold text-md md:text-sm lg:text-md text-secondary-typography">
-            {releaseDate || "TBD"}
+            {transformDateFormat(releaseDate) || "TBD"}
           </span>
           <h3
             className="text-lg md:text-md lg:text-lg text-primary-typography truncate"

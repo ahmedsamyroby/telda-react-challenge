@@ -8,7 +8,7 @@ import {
 import Tag from "../../components/Tag";
 import { useEffect } from "react";
 import CastCard from "./components/CastCard";
-import { transformMinutesToHours } from "../../utils";
+import { transformDateFormat, transformMinutesToHours } from "../../utils";
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
@@ -107,7 +107,7 @@ export default function MovieDetails() {
               Release Date
             </h3>
             <p className="text-base sm:text-lg text-secondary-typography">
-              {movieDetails?.release_date?.split("-").reverse().join("-") || // display it in DD-MM-YYYY format as it's the superior date format
+              {transformDateFormat(movieDetails?.release_date) || // display it in DD-MM-YYYY format as it's the superior date format
                 "TBD"}
             </p>
           </section>

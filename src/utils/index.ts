@@ -12,3 +12,13 @@ export function transformMinutesToHours(mins?: number): string {
   const minutes = mins % 60;
   return `${hours}h ${minutes}m`;
 }
+
+/**
+ * Transforms a date string from "YYYY-MM-DD" to "DD-MM-YYYY" format as it's the superior date format
+ * @param date
+ * @returns date in "DD-MM-YYYY" format
+ */
+export function transformDateFormat(date?: string): string | undefined {
+  if (!date) return undefined;
+  return date.split("-").reverse().join("-");
+}
