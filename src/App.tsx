@@ -7,11 +7,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="bg-primary w-full p-8">
-        <div className="max-w-[100rem] w-full mx-auto">
-          <Outlet />
-        </div>
-      </div>
+      <Outlet />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
