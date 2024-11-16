@@ -3,7 +3,7 @@ import useGetMovieDetailsQuery from "../../hooks/apis/useGetMovieDetailsQuery";
 import {
   BACKDROP_BASE_URL,
   GENRE_DEFINITION_MAP,
-  POSTER_BASE_URL,
+  IMAGE_BASE_URL,
 } from "../../constants";
 import Tag, { TagSkeleton } from "../../components/Tag";
 import { useEffect } from "react";
@@ -42,7 +42,7 @@ export default function MovieDetails() {
         <div className="aspect-[27/40] overflow-hidden h-max max-w-80 min-w-40 sm:min-w-60 lg:min-w-80 rounded-md shadow-lg">
           <img
             alt={movieDetails?.title}
-            src={POSTER_BASE_URL + (movieDetails?.poster_path ?? "")}
+            src={IMAGE_BASE_URL + (movieDetails?.poster_path ?? "")}
             className="w-full h-full object-cover"
           />
         </div>

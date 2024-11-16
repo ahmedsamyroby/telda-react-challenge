@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Pagination from "../../components/Pagination";
-import { POSTER_BASE_URL } from "../../constants";
+import { IMAGE_BASE_URL } from "../../constants";
 import useGetMoviesListQuery from "../../hooks/apis/useGetMoviesListQuery";
 import MovieCard, { MovieCardSkeleton } from "./components/MovieCard";
 import { CircleAlert } from "lucide-react";
@@ -46,7 +46,7 @@ export default function MoviesList() {
               <MovieCard
                 key={movie.id}
                 id={movie.id}
-                image={POSTER_BASE_URL + movie.poster_path}
+                image={IMAGE_BASE_URL + movie.poster_path}
                 title={movie.title}
                 releaseDate={movie.release_date}
               />

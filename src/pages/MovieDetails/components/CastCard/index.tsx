@@ -1,5 +1,5 @@
 import Avatar from "../../../../components/Avatar";
-import { POSTER_BASE_URL } from "../../../../constants";
+import { IMAGE_BASE_URL } from "../../../../constants";
 import { getInitials } from "../../../../utils";
 
 type CastCardProps = {
@@ -14,7 +14,7 @@ export default function CastCard({ image, name, character }: CastCardProps) {
       <Avatar
         className="w-36 h-36 rounded-md mb-4 overflow-hidden"
         image={{
-          src: POSTER_BASE_URL + (image ?? ""),
+          src: IMAGE_BASE_URL + (image ?? ""),
           alt: name,
         }}
         fallback={{
