@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { transformDateFormat } from "../../../../utils";
+import Avatar from "../../../../components/Avatar";
 
 type MovieCardProps = {
   id: number;
@@ -17,13 +18,18 @@ export default function MovieCard({
   return (
     <Link to={"/" + id}>
       <article className="bg-secondary shadow rounded-md ring-2 ring-transparent overflow-hidden group hover:ring-accent">
-        <div className="aspect-[27/40] overflow-hidden">
-          <img
-            src={image}
-            alt={title + " poster"}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-          />
-        </div>
+        <Avatar
+          className="aspect-[27/40] overflow-hidden"
+          image={{
+            src: image,
+            alt: title,
+            className: "group-hover:scale-105 transition-transform",
+          }}
+          fallback={{
+            content: title,
+            className: "text-3xl bg-secondary text-center text-accent",
+          }}
+        />
         <div className="py-2 px-4">
           <span className="font-semibold text-md md:text-sm lg:text-md text-secondary-typography">
             {transformDateFormat(releaseDate) || "TBD"}
