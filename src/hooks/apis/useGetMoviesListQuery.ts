@@ -11,7 +11,7 @@ type MovieListResponse = Promise<
 function getMoviesList({
   queryKey,
 }: {
-  queryKey: [string, number, string];
+  queryKey: (string | number)[];
 }): MovieListResponse {
   // themoviedb search endpoint does not support empty queries
   // and the discover endpoint does not support queries
