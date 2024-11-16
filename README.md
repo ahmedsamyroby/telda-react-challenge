@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# Movie Listings App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple movie listings app that allows users to view a list of movies, search for movies using their names, and view their details. The app is built using React, TypeScript, React Query, and Tailwind CSS.
 
-## Available Scripts
+## Technical Decisions
 
-In the project directory, you can run:
+### React Query
 
-### `npm start`
+I used React Query to handle data fetching and caching because it provides most of the features that I need out of the box, such as caching, loading states, error handling, and pagination. These features are also provided by other libraries like RTK Query which i was considering using, but React Query was more lightweight and I didn't need the extra features that Redux provides.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Tailwind CSS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I used Tailwind CSS for styling because it gives me the flexibility to style components quickly without having to write CSS from scratch. It also provides a lot of powerful utilities like group, snap, and responsive utility variants which makes it easy to create responsive designs.
 
-### `npm test`
+### Choosing APIs from The Movie Database (TMDb)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I switch between the search and discover API endpoints from TMDb based on query parameters as I couldn't find an API that provides all movies and handles search at the same time. The search API handles movie searches by name but returns an empty array when given no search parameter, while the discover API doesn't handle search by name and is used for general browsing. This ensures the app can effectively manage both specific searches and general discovery.
 
-### `npm run build`
+## Trade-offs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Skeletons over other loading indicators (e.g. spinners, progress bars)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I used skeletons instead other loading indicators because it provides a seamless transition between loading and loaded states, which also gives the user an idea of the layout of the content that is being loaded, skeletons also gives a sense of progress to the user. However, skeletons can be more complex to implement and get right specially for bigger pages and components compared to other loading indicators.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Example Usage
 
-### `npm run eject`
+### Browsing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Search for movies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### View movie details
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Possible Improvements
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- More filtering options
+- Display more movie details (e.g. video trailers, reviews, recommendations)
+- Add theme switcher (light/dark mode)
