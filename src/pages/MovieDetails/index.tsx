@@ -29,8 +29,6 @@ export default function MovieDetails() {
     document.title = movieDetails?.title ?? "Movie Details";
   }, [movieDetails]);
 
-  console.log(error?.message);
-
   if (isLoading) return <MovieDetailsSkeleton />;
 
   if (isError)
