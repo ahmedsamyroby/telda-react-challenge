@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Pagination from "../../components/Pagination";
-import { IMAGE_BASE_URL } from "../../constants";
+import { POSTER_BASE_URL } from "../../constants";
 import useGetMoviesListQuery from "../../hooks/apis/useGetMoviesListQuery";
 import MovieCard, { MovieCardSkeleton } from "./components/MovieCard";
 import { CircleAlert } from "lucide-react";
@@ -29,7 +29,7 @@ export default function MoviesList() {
 
   if (isError)
     return (
-      <div className="text-red-600 font-bold text-2xl flex flex-col justify-center items-center gap-2 h-screen">
+      <div className="text-red-600 font-bold text-2xl flex flex-col justify-center items-center gap-2">
         <CircleAlert size={48} />
         {error ? error.message : "Something Went Wrong"}
       </div>
@@ -46,7 +46,7 @@ export default function MoviesList() {
               <MovieCard
                 key={movie.id}
                 id={movie.id}
-                image={IMAGE_BASE_URL + movie.poster_path}
+                image={POSTER_BASE_URL + movie.poster_path}
                 title={movie.title}
                 releaseDate={movie.release_date}
               />
