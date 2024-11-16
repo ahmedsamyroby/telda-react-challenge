@@ -25,3 +25,9 @@ export default function Tag({ children, color }: TagProps) {
     </span>
   );
 }
+
+export function TagSkeleton() {
+  return (
+    <span className="animate-pulse bg-neutral-700 rounded px-2 py-1 border-2 border-neutral-700 w-20 h-8 block" />
+  );
+}
