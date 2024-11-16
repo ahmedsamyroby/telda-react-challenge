@@ -6,7 +6,7 @@ This is a simple movie listings app built for [Telda's React Challenge](https://
 
 ### React Query
 
-I used React Query to handle data fetching and caching because it provides most of the features that I need out of the box, such as caching, loading states, error handling, and pagination. These features are also provided by other libraries like RTK Query which i was considering using, but React Query was chosen over RTK Query because the project primarily focuses on fetching and displaying data with minimal state management. While RTK Query offers similar features, its integration with Redux introduces additional boilerplate that wasn't necessary for the scope of this project.
+I used React Query to handle data fetching because it provides most of the features that I need out of the box, such as caching, loading states, error handling, and pagination. These features are also provided by other libraries like RTK Query which I was considering using, but React Query was chosen over RTK Query because the project primarily focuses on fetching and displaying data with minimal state management. While RTK Query offers similar features, its integration with Redux introduces additional boilerplate that wasn't necessary for the scope of this project.
 
 ### Tailwind CSS
 
