@@ -9,11 +9,16 @@ import Tag, { TagSkeleton } from "../../components/Tag";
 import { useEffect } from "react";
 import CastCard, { CastCardSkeleton } from "./components/CastCard";
 import { transformDateFormat, transformMinutesToHours } from "../../utils";
+import NotFound from "../NotFound";
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
 
-  const { data: movieDetails, isLoading } = useGetMovieDetailsQuery(Number(id));
+  const {
+    data: movieDetails,
+    isLoading,
+    isError,
+  } = useGetMovieDetailsQuery(Number(id));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +29,8 @@ export default function MovieDetails() {
   }, [movieDetails]);
 
   if (isLoading) return <MovieDetailsSkeleton />;
+
+  if (isError) return <NotFound message="Movie Not Found" />;
 
   return (
     <div className="bg-secondary">
