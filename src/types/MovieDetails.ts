@@ -33,6 +33,20 @@ type CastInfo = {
   profile_path: string | null;
 };
 
+type CrewInfo = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+  credit_id: string;
+  department: string;
+  job: string;
+};
+
 type MovieDetails = {
   adult: boolean;
   backdrop_path: string | null;
@@ -62,7 +76,7 @@ type MovieDetails = {
   vote_count: number;
   credits: {
     cast: CastInfo[];
-    crew: any[];
+    crew: CrewInfo[];
   };
 };
 
