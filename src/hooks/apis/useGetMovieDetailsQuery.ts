@@ -11,7 +11,7 @@ export default function useGetMovieDetailsQuery(id: number) {
     queryFn: (): MovieDetailsResponse => {
       return axiosInstance.get(`/movie/${id}`, {
         params: {
-          append_to_response: "videos,credits",
+          append_to_response: "credits",
         },
       });
     },
