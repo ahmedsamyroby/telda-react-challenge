@@ -9,7 +9,7 @@ import Tag, { TagSkeleton } from "../../components/Tag";
 import { useEffect } from "react";
 import CastCard, { CastCardSkeleton } from "./components/CastCard";
 import { transformDateFormat, transformMinutesToHours } from "../../utils";
-import NotFound from "../NotFound";
+import ErrorDisplay from "../ErrorDisplay";
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +18,7 @@ export default function MovieDetails() {
     data: movieDetails,
     isLoading,
     isError,
+    error,
   } = useGetMovieDetailsQuery(Number(id));
 
   useEffect(() => {
@@ -28,9 +29,19 @@ export default function MovieDetails() {
     document.title = movieDetails?.title ?? "Movie Details";
   }, [movieDetails]);
 
+  console.log(error?.message);
+
   if (isLoading) return <MovieDetailsSkeleton />;
 
-  if (isError) return <NotFound message="Movie Not Found" />;
+  if (isError)
+    return (
+      <ErrorDisplay
+        code={error.status}
+        message={
+          error.status === 404 ? "Movie not found." : "Something went wrong."
+        }
+      />
+    );
 
   return (
     <div className="bg-secondary">

@@ -3,7 +3,7 @@ import App from "../App";
 import MoviesList from "../pages/MoviesList";
 import MovieDetails from "../pages/MovieDetails";
 import MovieListLayout from "../pages/MoviesList/layout";
-import NotFound from "../pages/NotFound";
+import ErrorDisplay from "../pages/ErrorDisplay";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotFound />,
-  }
+    element: <ErrorDisplay code={404} message="Page not found." />,
+  },
 ]);
 
 export default router;

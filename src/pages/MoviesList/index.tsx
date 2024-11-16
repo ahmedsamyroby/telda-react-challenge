@@ -3,8 +3,8 @@ import Pagination from "../../components/Pagination";
 import { IMAGE_BASE_URL } from "../../constants";
 import useGetMoviesListQuery from "../../hooks/apis/useGetMoviesListQuery";
 import MovieCard, { MovieCardSkeleton } from "./components/MovieCard";
-import { CircleAlert } from "lucide-react";
 import SearchBar from "./components/SearchBar";
+import ErrorDisplay from "../ErrorDisplay";
 
 const PAGE_SIZE = 20;
 const MAX_PAGES = 500; // TheMovieDB API only allows up to 500 pages
@@ -30,10 +30,12 @@ export default function MoviesList() {
 
   if (isError)
     return (
-      <div className="text-red-600 font-bold text-2xl flex flex-col justify-center items-center gap-2">
-        <CircleAlert size={48} />
-        {error ? error.message : "Something Went Wrong"}
-      </div>
+      <ErrorDisplay
+        code={error.status}
+        message={
+          error.status === 404 ? "Page not found." : "Something went wrong."
+        }
+      />
     );
 
   return (
