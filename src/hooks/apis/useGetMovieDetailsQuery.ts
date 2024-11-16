@@ -1,17 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../services/AxiosService";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import MovieDetails from "../../types/MovieDetails";
 
-type MovieDetailsResponse = Promise<AxiosResponse<MovieDetails>>;
-
 export default function useGetMovieDetailsQuery(id: number) {
-  return useQuery({
+  return useQuery<AxiosResponse<MovieDetails>, AxiosError, MovieDetails>({
     queryKey: ["movie", id],
-    queryFn: (): MovieDetailsResponse => {
+    queryFn: () => {
       return axiosInstance.get(`/movie/${id}`, {
         params: {
-          append_to_response: "videos,credits",
+          append_to_response: "credits",
         },
       });
     },
