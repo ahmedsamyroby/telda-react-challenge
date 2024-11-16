@@ -3,6 +3,7 @@ import App from "../App";
 import MoviesList from "../pages/MoviesList";
 import MovieDetails from "../pages/MovieDetails";
 import MovieListLayout from "../pages/MoviesList/layout";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  }
 ]);
 
 export default router;
