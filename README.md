@@ -26,6 +26,8 @@ I used skeletons instead other loading indicators because it provides a seamless
 
 ### Browsing
 
+![Browsing Preview](https://github.com/user-attachments/assets/df9f3917-79ad-4609-bb43-582bfb61522a)
+
 ### Search for movies
 
 ### View movie details
