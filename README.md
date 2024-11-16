@@ -30,6 +30,8 @@ I used skeletons instead other loading indicators because it provides a seamless
 
 ### Search for movies
 
+![Search Preview](https://github.com/user-attachments/assets/39b745fd-3a64-442b-9e2d-59702bc4e791)
+
 ### View movie details
 
 ## Possible Improvements
