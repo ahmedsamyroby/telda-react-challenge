@@ -42,26 +42,30 @@ export default function MovieDetails() {
     );
 
   return (
-    <div className="bg-secondary">
+    <div className="bg-secondary h-screen">
       <div className="w-full overflow-hidden fixed top-0 z-0 h-full">
         {movieDetails?.backdrop_path && (
-          <img
-            alt={movieDetails?.title}
-            src={BACKDROP_BASE_URL + movieDetails.backdrop_path}
-            className="w-full h-full object-cover"
-          />
+          <>
+            <img
+              alt={movieDetails?.title}
+              src={BACKDROP_BASE_URL + movieDetails.backdrop_path}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
+          </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
       </div>
 
       <div className="relative z-20 px-16 xl:px-24 flex flex-col xl:flex-row items-center xl:items-end gap-4 pt-32 pb-4">
-        <div className="aspect-[27/40] overflow-hidden h-max max-w-80 min-w-40 sm:min-w-60 lg:min-w-80 rounded-md shadow-lg">
-          <img
-            alt={movieDetails?.title}
-            src={IMAGE_BASE_URL + (movieDetails?.poster_path ?? "")}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        {movieDetails?.poster_path && (
+          <div className="aspect-[27/40] overflow-hidden h-max max-w-80 min-w-40 sm:min-w-60 lg:min-w-80 rounded-md shadow-lg">
+            <img
+              alt={movieDetails?.title}
+              src={IMAGE_BASE_URL + movieDetails.poster_path}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
         <h1 className="text-3xl md:text-5xl xl:text-7xl font-semibold text-primary-typography text-center xl:text-start">
           {movieDetails?.title}
         </h1>
